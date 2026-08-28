@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: consolidated-shipping-demo
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+temporal:
+  target: ${TEMPORAL_ADDRESS:localhost:7233}
+  namespace: ${TEMPORAL_NAMESPACE:default}
+  task-queue: ${TEMPORAL_TASK_QUEUE:consolidated-shipping-demo}
+
+demo:
+  timing:
+    consolidation-window: ${CONSOLIDATION_WINDOW:PT8H}
+    shipment-activity-duration: ${SHIPMENT_ACTIVITY_DURATION:PT1M}
+    item-step-duration: ${ITEM_STEP_DURATION:PT3S}

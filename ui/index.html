@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Temporal consolidated shipment demo" />
+    <title>Consolidated shipment lab</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Temporal Java demo</p>
+          <h1>Consolidated shipment lab</h1>
+          <p class="lede">
+            Fire patient orders, approve human tasks, and watch items converge on one
+            patient-and-address shipment workflow.
+          </p>
+        </div>
+        <a class="temporal-link" href="http://localhost:8080" target="_blank" rel="noreferrer">
+          Open Temporal UI ↗
+        </a>
+      </header>
+
+      <section class="control-panel card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">New order</p>
+            <h2>Choose a destination and scenario</h2>
+          </div>
+          <span id="connection-status" class="pill neutral">Connecting</span>
+        </div>
+
+        <form id="order-form">
+          <label>
+            Patient
+            <select id="patient" required></select>
+          </label>
+          <label>
+            Ship-to address
+            <select id="address" required></select>
+          </label>
+          <label>
+            Order preset
+            <select id="preset" required>
+              <option value="showcase">Three-item behavior showcase</option>
+              <option value="single">Single item, no final activities</option>
+              <option value="approval">Approval + post-shipment activities</option>
+            </select>
+          </label>
+          <button type="submit" id="submit-order">Fire order</button>
+        </form>
+        <p id="form-message" class="form-message" aria-live="polite"></p>
+
+        <div id="timing" class="timing-strip"></div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Entity workflows</p>
+            <h2>Consolidation windows</h2>
+          </div>
+          <span class="quiet">One Workflow ID per patient + address</span>
+        </div>
+        <div id="consolidations" class="grid empty-state">No consolidation workflows yet.</div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Order fan-out</p>
+            <h2>Orders and item workflows</h2>
+          </div>
+          <span class="quiet">Updates every 2 seconds</span>
+        </div>
+        <div id="orders" class="stack empty-state">Fire an order to begin.</div>
+      </section>
+    </main>
+  </body>
+</html>
